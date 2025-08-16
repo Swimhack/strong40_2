@@ -1,0 +1,9 @@
+.git
+.gitignore
+README.md
+fly.toml
+.dockerignore
+Dockerfile
+scripts/
+testsprite_tests/
+credentials.md
