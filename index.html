@@ -2,7 +2,13 @@
 <html lang="en" x-data="app()" x-init="init()">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//unpkg.com" />
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
     <title>Strong40 - Daily Strength Tips for Men Over 40</title>
     <meta name="description" content="Stronger after 40—one small win a day. Get practical strength tips designed for busy men over 40. Joint-friendly workouts that fit your life." />
     <link rel="canonical" href="https://strong40-2.fly.dev/" />
@@ -11,15 +17,29 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Strong40 - Daily Strength Tips for Men Over 40" />
-    <meta property="og:description" content="Stronger after 40—one small win a day. Practical, joint-friendly tips for busy dads and professionals." />
+    <meta property="og:description" content="Stronger after 40—one small win a day. Get practical strength tips designed for busy men over 40. Joint-friendly workouts that fit your life." />
     <meta property="og:url" content="https://strong40-2.fly.dev/" />
     <meta property="og:image" content="https://strong40-2.fly.dev/assets/images/og-416-1200x630.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Strong40 - Fitness for Men Over 40" />
+    <meta property="og:site_name" content="Strong40" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Strong40 - Daily Strength Tips for Men Over 40" />
-    <meta name="twitter:description" content="Stronger after 40—one small win a day. Practical, joint-friendly tips for busy dads and professionals." />
+    <meta name="twitter:description" content="Stronger after 40—one small win a day. Joint-friendly workouts designed for busy dads and professionals." />
     <meta name="twitter:image" content="https://strong40-2.fly.dev/assets/images/og-416-1200x630.jpg" />
+    <meta name="twitter:image:alt" content="Strong40 - Fitness for Men Over 40" />
+    <meta name="twitter:creator" content="@strong40fitness" />
+    <meta name="twitter:site" content="@strong40fitness" />
+
+    <!-- Additional Social Meta -->
+    <meta property="fb:app_id" content="123456789" />
+    <meta property="article:author" content="Strong40" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="msapplication-TileColor" content="#0ea5e9" />
 
     <!-- Preconnect for faster image loading -->
     <!-- Preconnects for remote hero image srcset -->
@@ -166,36 +186,44 @@
               <h2 class="text-xl font-semibold">Get your daily Strong40 tip</h2>
               <p class="mt-1 text-sm text-black/70 dark:text-white/70">Join the newsletter for one practical win each day.</p>
 
-              <form name="strong40-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?success=true" class="mt-4 space-y-4" x-show="!formSubmitted">
+              <form name="strong40-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?success=true" class="mt-4 space-y-4" x-show="!formSubmitted" x-data="formValidation()" @submit="validateForm($event)" aria-label="Newsletter signup form">
                 <input type="hidden" name="form-name" value="strong40-lead" />
                 <p class="hidden">
-                  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                  <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                 </p>
 
                 <div class="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label for="name" class="block text-sm font-medium">Name</label>
-                    <input id="name" name="name" type="text" autocomplete="name" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                    <input id="name" name="name" type="text" autocomplete="name" x-model="form.name" aria-describedby="name-help" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                    <div id="name-help" class="sr-only">Your first name for personalized tips</div>
                   </div>
                   <div>
                     <label for="email" class="block text-sm font-medium">Email <span aria-hidden="true" class="text-red-600">*</span></label>
-                    <input id="email" name="email" type="email" required autocomplete="email" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                    <input id="email" name="email" type="email" required autocomplete="email" x-model="form.email" aria-describedby="email-help email-error" aria-required="true" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" :class="{'border-red-500': errors.email}" />
+                    <div id="email-help" class="sr-only">Your email address to receive daily tips</div>
+                    <div id="email-error" x-show="errors.email" x-text="errors.email" class="mt-1 text-sm text-red-600" role="alert"></div>
                   </div>
                 </div>
                 <div class="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label for="phone" class="block text-sm font-medium">Phone (optional)</label>
-                    <input id="phone" name="phone" type="tel" x-model="phone" autocomplete="tel" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                    <input id="phone" name="phone" type="tel" x-model="form.phone" autocomplete="tel" aria-describedby="phone-help" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" :class="{'border-red-500': errors.phone}" />
+                    <div id="phone-help" class="sr-only">Optional phone number for SMS tips</div>
+                    <div x-show="errors.phone" x-text="errors.phone" class="mt-1 text-sm text-red-600" role="alert"></div>
                   </div>
                   <div class="flex items-start gap-2 mt-6">
-                    <input id="email-consent" name="email_consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" />
+                    <input id="email-consent" name="email_consent" type="checkbox" required x-model="form.emailConsent" aria-describedby="email-consent-help" class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" :class="{'border-red-500': errors.emailConsent}" />
                     <label for="email-consent" class="text-sm">I agree to receive daily tips via email.</label>
+                    <div id="email-consent-help" class="sr-only">Required: Consent to receive email newsletter</div>
+                    <div x-show="errors.emailConsent" x-text="errors.emailConsent" class="mt-1 text-sm text-red-600" role="alert"></div>
                   </div>
                 </div>
 
-                <div class="flex items-start gap-2" x-show="phone && phone.length > 0">
-                  <input id="sms-consent" name="sms_consent" type="checkbox" class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" />
+                <div class="flex items-start gap-2" x-show="form.phone && form.phone.length > 0">
+                  <input id="sms-consent" name="sms_consent" type="checkbox" x-model="form.smsConsent" aria-describedby="sms-consent-help" class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" />
                   <label for="sms-consent" class="text-sm">I agree to receive occasional SMS. Reply STOP to unsubscribe, HELP for help. Message/data rates may apply.</label>
+                  <div id="sms-consent-help" class="sr-only">Optional: Consent to receive SMS messages</div>
                 </div>
 
                 <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md bg-[hsl(var(--brand))] text-white hover:bg-[hsl(var(--brand-strong))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50">
@@ -218,7 +246,7 @@
           <figure class="overflow-hidden rounded-lg shadow-medium border border-black/5 dark:border-white/10 bg-white">
             <img
               src="./assets/images/hero-416-1200x800.jpg"
-              alt="Fit man in his 40s demonstrating proper training form"
+              alt="Confident mature man in his 40s with grey hair performing strength training exercises, demonstrating proper form and functional fitness techniques"
               width="1200"
               height="800"
               loading="eager"
@@ -259,28 +287,28 @@
       <h2 class="text-2xl font-bold">Why Strong40 works</h2>
       <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
-          <img src="./assets/images/joint-1019-600x400.jpg" width="600" height="400" loading="lazy" alt="40+ man using joint-friendly training equipment" class="w-full h-[200px] object-cover" />
+          <img src="./assets/images/joint-1019-600x400.jpg" width="600" height="400" loading="lazy" alt="Mature athlete in his 40s performing joint-friendly stretching and mobility exercises, demonstrating proper form for injury prevention" class="w-full h-[200px] object-cover" />
           <div class="p-4">
             <h3 class="font-semibold">Joint-Friendly</h3>
             <p class="mt-1 text-sm text-black/70 dark:text-white/70">Reduce joint stress with smarter exercise choices.</p>
           </div>
         </article>
         <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
-          <img src="./assets/images/progressive-1020-600x400.jpg" width="600" height="400" loading="lazy" alt="Mature man following progressive strength training" class="w-full h-[200px] object-cover" />
+          <img src="./assets/images/progressive-1020-600x400.jpg" width="600" height="400" loading="lazy" alt="Experienced man over 40 with grey hair following progressive strength training program, showing gradual muscle development and safe technique" class="w-full h-[200px] object-cover" />
           <div class="p-4">
             <h3 class="font-semibold">Progressive</h3>
             <p class="mt-1 text-sm text-black/70 dark:text-white/70">Simple progressions to sustain gains without burnout.</p>
           </div>
         </article>
         <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
-          <img src="./assets/images/busy-dad-1014-600x400.jpg" width="600" height="400" loading="lazy" alt="40-year-old dad doing time-efficient workout" class="w-full h-[200px] object-cover" />
+          <img src="./assets/images/busy-dad-1014-600x400.jpg" width="600" height="400" loading="lazy" alt="Professional father in his 40s doing efficient home workout, balancing fitness with busy schedule and family responsibilities" class="w-full h-[200px] object-cover" />
           <div class="p-4">
             <h3 class="font-semibold">Busy-Dad Friendly</h3>
             <p class="mt-1 text-sm text-black/70 dark:text-white/70">Workouts that fit tight schedules with minimal equipment.</p>
           </div>
         </article>
         <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
-          <img src="./assets/images/recovery-1025-600x400.jpg" width="600" height="400" loading="lazy" alt="Men over 40 focusing on recovery and mobility" class="w-full h-[200px] object-cover" />
+          <img src="./assets/images/recovery-1025-600x400.jpg" width="600" height="400" loading="lazy" alt="Distinguished man over 40 practicing mindful recovery techniques including meditation and breathing exercises for optimal health" class="w-full h-[200px] object-cover" />
           <div class="p-4">
             <h3 class="font-semibold">Recovery Focused</h3>
             <p class="mt-1 text-sm text-black/70 dark:text-white/70">Recovery routines to maintain energy and avoid injury.</p>
@@ -436,6 +464,48 @@
             const text = `${t.title}: ${t.body}`;
             if (navigator.clipboard && navigator.clipboard.writeText) {
               navigator.clipboard.writeText(text).then(() => { this.copied = true; });
+            }
+          }
+        }
+      }
+
+      function formValidation() {
+        return {
+          form: {
+            name: '',
+            email: '',
+            phone: '',
+            emailConsent: false,
+            smsConsent: false
+          },
+          errors: {},
+          validateForm(event) {
+            this.errors = {};
+            
+            // Email validation
+            if (!this.form.email) {
+              this.errors.email = 'Email is required';
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) {
+              this.errors.email = 'Please enter a valid email address';
+            }
+            
+            // Email consent validation
+            if (!this.form.emailConsent) {
+              this.errors.emailConsent = 'You must agree to receive emails';
+            }
+            
+            // Phone validation (if provided)
+            if (this.form.phone && !/^[\+]?[1-9][\d]{0,15}$/.test(this.form.phone.replace(/\s+/g, ''))) {
+              this.errors.phone = 'Please enter a valid phone number';
+            }
+            
+            // If there are errors, prevent submission
+            if (Object.keys(this.errors).length > 0) {
+              event.preventDefault();
+              // Focus on first error field
+              const firstErrorField = Object.keys(this.errors)[0];
+              const element = document.getElementById(firstErrorField === 'emailConsent' ? 'email-consent' : firstErrorField);
+              if (element) element.focus();
             }
           }
         }
