@@ -41,7 +41,10 @@ cmd /c "git commit -m \"chore: initial Strong40 SPA with assets and docs\" >nul 
 Write-Host "Reading GitHub token from credentials.md..."
 $credPath = Join-Path (Get-Location) 'credentials.md'
 if (-not (Test-Path $credPath)) { throw "credentials.md not found" }
-$token = (Get-Content $credPath) -join "`n" | Select-String -Pattern "ghp_[A-Za-z0-9]+" -AllMatches | ForEach-Object { $_.Matches.Value } | Select-Object -First 1
+$token = (Get-Content $credPath) -join "`n" |
+  Select-String -Pattern "github_pat_[A-Za-z0-9_]+|ghp_[A-Za-z0-9]+" -AllMatches |
+  ForEach-Object { $_.Matches.Value } |
+  Select-Object -First 1
 if (-not $token) { throw "GitHub token not found in credentials.md" }
 
 Write-Host "Creating GitHub repo via API..."
