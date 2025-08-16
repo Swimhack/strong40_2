@@ -5,6 +5,7 @@ app = 'strong40-2'
 primary_region = 'ord'
 
 [build]
+  dockerfile = "Dockerfile"
 
 [env]
 
