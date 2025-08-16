@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en" x-data="app()" x-init="init()">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strong40 - Daily Strength Tips for Men Over 40</title>
+    <meta name="description" content="Stronger after 40—one small win a day. Get practical strength tips designed for busy men over 40. Joint-friendly workouts that fit your life." />
+    <link rel="canonical" href="https://strong-40.netlify.app/" />
+    <meta name="robots" content="index,follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Strong40 - Daily Strength Tips for Men Over 40" />
+    <meta property="og:description" content="Stronger after 40—one small win a day. Practical, joint-friendly tips for busy dads and professionals." />
+    <meta property="og:url" content="https://strong-40.netlify.app/" />
+    <meta property="og:image" content="https://strong-40.netlify.app/assets/images/og-416-1200x630.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Strong40 - Daily Strength Tips for Men Over 40" />
+    <meta name="twitter:description" content="Stronger after 40—one small win a day. Practical, joint-friendly tips for busy dads and professionals." />
+    <meta name="twitter:image" content="https://strong-40.netlify.app/assets/images/og-416-1200x630.jpg" />
+
+    <!-- Preconnect for faster image loading -->
+    <!-- Preconnects for remote hero image srcset -->
+    <link rel="preconnect" href="https://picsum.photos" crossorigin />
+    <link rel="preconnect" href="https://i.picsum.photos" crossorigin />
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                'ui-sans-serif',
+                'system-ui',
+                'Segoe UI',
+                'Roboto',
+                'Helvetica Neue',
+                'Arial',
+                'Noto Sans',
+                'Apple Color Emoji',
+                'Segoe UI Emoji',
+                'Segoe UI Symbol',
+                'Noto Color Emoji'
+              ]
+            },
+            boxShadow: {
+              soft: '0 2px 10px hsl(0 0% 0% / 0.05)',
+              medium: '0 10px 25px hsl(0 0% 0% / 0.1)'
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --brand: 199 89% 48%;
+        --brand-strong: 201 96% 32%;
+        --muted: 210 40% 96%;
+      }
+      .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+      }
+      body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+      }
+      .hero-gradient {
+        background-image: linear-gradient(135deg, hsl(var(--brand) / 0.10), hsl(var(--brand-strong) / 0.05));
+      }
+      .card-surface {
+        background-image: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+      }
+    </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Strong40",
+        "url": "https://strong-40.netlify.app/",
+        "logo": "https://strong-40.netlify.app/assets/images/og-416-1200x630.jpg",
+        "sameAs": []
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Strong40",
+        "url": "https://strong-40.netlify.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://strong-40.netlify.app/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class="min-h-screen selection:bg-[hsl(var(--brand)/0.2)] selection:text-[hsl(var(--foreground))]">
+    <style>[x-cloak]{display:none!important}</style>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[hsl(var(--brand))] text-white px-3 py-2 rounded">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[hsl(var(--background)/0.7)] backdrop-blur border-b border-black/5 dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="text-[hsl(var(--brand-strong))]">
+            <path d="M7 14l3-3 3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span class="font-semibold text-lg">Strong40</span>
+          <span class="hidden sm:inline text-sm text-black/60 dark:text-white/60">Stronger after 40—one small win a day</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" @click="toggleTheme()" class="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-black/10 dark:border-white/10 text-sm hover:bg-black/5 dark:hover:bg-white/5" aria-label="Toggle theme">
+            <svg x-show="theme==='light'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a1 1 0 011 1v1a1 1 0 01-2 0V3a1 1 0 011-1zm0 13a4 4 0 100-8 4 4 0 000 8zm7-4a1 1 0 100-2h-1a1 1 0 100 2h1zM4 10a1 1 0 100-2H3a1 1 0 100 2h1zm10.657 5.657a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM6.464 6.464A1 1 0 105.05 5.05l-.707.707A1 1 0 106.464 6.464zM15.657 4.343a1 1 0 00-1.414 0l-.707.707A1 1 0 0015.657 6.464l.707-.707a1 1 0 000-1.414zM6.464 13.536l-.707.707a1 1 0 101.414 1.414l.707-.707a1 1 0 10-1.414-1.414z"/></svg>
+            <svg x-show="theme==='dark'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 116.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+            <span class="hidden sm:inline" x-text="theme==='dark' ? 'Dark' : 'Light'"></span>
+          </button>
+          <a href="#lead" class="hidden sm:inline px-3 py-2 rounded-md text-sm bg-[hsl(var(--brand))] text-white hover:bg-[hsl(var(--brand-strong))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50">Get Tips</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-gradient">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <span class="inline-flex items-center gap-2 text-xs px-2.5 py-1 rounded-full bg-[hsl(var(--brand)/0.12)] text-[hsl(var(--brand-strong))] border border-[hsl(var(--brand)/0.3)]">Joint-friendly</span>
+            <span class="inline-flex items-center gap-2 text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/10">20 minutes/day</span>
+            <span class="inline-flex items-center gap-2 text-xs px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/10">Recovery-first</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+            Stronger after 40—<span class="text-[hsl(var(--brand-strong))]">one small win a day</span>
+          </h1>
+          <p class="mt-4 text-lg text-black/70 dark:text-white/70">Practical strength tips designed for busy dads and professionals. Joint-friendly, progressive, time-efficient, and recovery-focused.</p>
+          <ul class="mt-4 space-y-2 text-sm text-black/70 dark:text-white/70">
+            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[hsl(var(--brand))]"></span> Built for men over 40</li>
+            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[hsl(var(--brand))]"></span> Joint-friendly progressions</li>
+            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[hsl(var(--brand))]"></span> Minimal time, maximum results</li>
+          </ul>
+
+          <!-- Lead Form -->
+          <div id="lead" class="mt-8">
+            <div class="card-surface rounded-lg p-6 shadow-medium border border-black/5 dark:border-white/10">
+              <h2 class="text-xl font-semibold">Get your daily Strong40 tip</h2>
+              <p class="mt-1 text-sm text-black/70 dark:text-white/70">Join the newsletter for one practical win each day.</p>
+
+              <form name="strong40-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?success=true" class="mt-4 space-y-4" x-show="!formSubmitted">
+                <input type="hidden" name="form-name" value="strong40-lead" />
+                <p class="hidden">
+                  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </p>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="name" class="block text-sm font-medium">Name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium">Email <span aria-hidden="true" class="text-red-600">*</span></label>
+                    <input id="email" name="email" type="email" required autocomplete="email" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                  </div>
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="phone" class="block text-sm font-medium">Phone (optional)</label>
+                    <input id="phone" name="phone" type="tel" x-model="phone" autocomplete="tel" class="mt-1 w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-black/20 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50" />
+                  </div>
+                  <div class="flex items-start gap-2 mt-6">
+                    <input id="email-consent" name="email_consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" />
+                    <label for="email-consent" class="text-sm">I agree to receive daily tips via email.</label>
+                  </div>
+                </div>
+
+                <div class="flex items-start gap-2" x-show="phone && phone.length > 0">
+                  <input id="sms-consent" name="sms_consent" type="checkbox" class="mt-1 h-4 w-4 rounded border-black/20 text-[hsl(var(--brand))] focus:ring-[hsl(var(--brand))]" />
+                  <label for="sms-consent" class="text-sm">I agree to receive occasional SMS. Reply STOP to unsubscribe, HELP for help. Message/data rates may apply.</label>
+                </div>
+
+                <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md bg-[hsl(var(--brand))] text-white hover:bg-[hsl(var(--brand-strong))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50">
+                  Get My Tips
+                </button>
+                <p class="text-xs text-black/60 dark:text-white/60">We respect your privacy. Unsubscribe anytime.</p>
+              </form>
+
+              <div class="mt-4" x-show="formSubmitted" x-cloak>
+                <div class="rounded-md border border-black/10 dark:border-white/10 p-4 bg-white dark:bg-black/20">
+                  <p class="font-medium">Thanks! You're subscribed.</p>
+                  <p class="text-sm text-black/70 dark:text-white/70">Check your inbox for your first Strong40 tip. If you opted into SMS, you may receive a welcome text shortly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <figure class="overflow-hidden rounded-lg shadow-medium border border-black/5 dark:border-white/10 bg-white">
+            <picture>
+              <source type="image/webp" srcset="https://picsum.photos/id/416/1200/800.webp 1200w, https://picsum.photos/id/416/900/600.webp 900w, https://picsum.photos/id/416/600/400.webp 600w" sizes="(min-width: 1024px) 600px, (min-width: 640px) 80vw, 100vw" />
+              <img
+                src="./assets/images/hero-416-1200x800.jpg"
+                srcset="https://picsum.photos/id/416/1200/800 1200w, https://picsum.photos/id/416/900/600 900w, https://picsum.photos/id/416/600/400 600w"
+                sizes="(min-width: 1024px) 600px, (min-width: 640px) 80vw, 100vw"
+                alt="Fit man in his 40s demonstrating proper training form"
+                width="1200"
+                height="800"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                class="w-full h-auto object-cover"
+                onerror="this.onerror=null; this.src='./assets/images/hero-416-1200x800.jpg';"
+              />
+            </picture>
+            <figcaption class="sr-only">Hero image representing Strong40 audience</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="main" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold">How it works</h2>
+      <div class="mt-6 grid sm:grid-cols-3 gap-6">
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10">
+          <div class="text-sm text-black/60 dark:text-white/60">Step 1</div>
+          <div class="mt-1 font-semibold">Sign Up</div>
+          <p class="mt-2 text-sm">Enter your email (and phone, optional) to get started.</p>
+        </div>
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10">
+          <div class="text-sm text-black/60 dark:text-white/60">Step 2</div>
+          <div class="mt-1 font-semibold">Get Tips</div>
+          <p class="mt-2 text-sm">Receive one practical, joint-friendly tip every day.</p>
+        </div>
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10">
+          <div class="text-sm text-black/60 dark:text-white/60">Step 3</div>
+          <div class="mt-1 font-semibold">Get Stronger</div>
+          <p class="mt-2 text-sm">Small wins compound to meaningful strength and energy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+      <h2 class="text-2xl font-bold">Why Strong40 works</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
+          <img src="./assets/images/joint-1019-600x400.jpg" width="600" height="400" loading="lazy" alt="40+ man using joint-friendly training equipment" class="w-full h-[200px] object-cover" />
+          <div class="p-4">
+            <h3 class="font-semibold">Joint-Friendly</h3>
+            <p class="mt-1 text-sm text-black/70 dark:text-white/70">Reduce joint stress with smarter exercise choices.</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
+          <img src="./assets/images/progressive-1020-600x400.jpg" width="600" height="400" loading="lazy" alt="Mature man following progressive strength training" class="w-full h-[200px] object-cover" />
+          <div class="p-4">
+            <h3 class="font-semibold">Progressive</h3>
+            <p class="mt-1 text-sm text-black/70 dark:text-white/70">Simple progressions to sustain gains without burnout.</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
+          <img src="./assets/images/busy-dad-1014-600x400.jpg" width="600" height="400" loading="lazy" alt="40-year-old dad doing time-efficient workout" class="w-full h-[200px] object-cover" />
+          <div class="p-4">
+            <h3 class="font-semibold">Busy-Dad Friendly</h3>
+            <p class="mt-1 text-sm text-black/70 dark:text-white/70">Workouts that fit tight schedules with minimal equipment.</p>
+          </div>
+        </article>
+        <article class="rounded-lg overflow-hidden border border-black/5 dark:border-white/10 shadow-soft">
+          <img src="./assets/images/recovery-1025-600x400.jpg" width="600" height="400" loading="lazy" alt="Men over 40 focusing on recovery and mobility" class="w-full h-[200px] object-cover" />
+          <div class="p-4">
+            <h3 class="font-semibold">Recovery Focused</h3>
+            <p class="mt-1 text-sm text-black/70 dark:text-white/70">Recovery routines to maintain energy and avoid injury.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sample Tips Carousel -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Sample tips</h2>
+        <div class="text-sm text-black/60 dark:text-white/60">Built for busy dads and professionals 40+</div>
+      </div>
+
+      <div class="mt-6 card-surface rounded-lg p-6 shadow-medium border border-black/5 dark:border-white/10" x-data="tipsCarousel()">
+        <div class="min-h-[120px]">
+          <p class="text-lg font-medium" x-text="tips[current].title"></p>
+          <p class="mt-2 text-sm text-black/70 dark:text-white/70" x-text="tips[current].body"></p>
+        </div>
+        <div class="mt-4 flex items-center gap-2">
+          <button type="button" @click="prev()" class="px-3 py-2 rounded-md border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5" aria-label="Previous tip">Prev</button>
+          <button type="button" @click="next()" class="px-3 py-2 rounded-md border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5" aria-label="Next tip">Next</button>
+          <button type="button" @click="copy()" class="ml-auto inline-flex items-center gap-2 px-3 py-2 rounded-md bg-[hsl(var(--brand))] text-white hover:bg-[hsl(var(--brand-strong))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--brand))]/50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 00-1 1v2H6a2 2 0 00-2 2v8a2 2 0 002 2h7a2 2 0 002-2V7a2 2 0 00-2-2h-2V3a1 1 0 00-1-1H9z"/></svg>
+            <span x-text="copied ? 'Copied!' : 'Copy'">Copy</span>
+          </button>
+        </div>
+        <div class="mt-4 flex items-center justify-center gap-2" role="tablist" aria-label="Tips navigation">
+          <template x-for="(t, i) in tips" :key="i">
+            <button :aria-selected="current===i" :class="current===i ? 'bg-[hsl(var(--brand))] w-6' : 'bg-black/20 dark:bg-white/20 w-2.5'" class="h-2.5 rounded-full transition-all" @click="go(i)"></button>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Challenges -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold">Men 40+ face real challenges</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10 text-center">
+          <div class="text-3xl font-extrabold">65%</div>
+          <div class="mt-1 text-sm">Report occasional joint pain</div>
+        </div>
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10 text-center">
+          <div class="text-3xl font-extrabold">30m</div>
+          <div class="mt-1 text-sm">Average time available per day</div>
+        </div>
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10 text-center">
+          <div class="text-3xl font-extrabold">3x</div>
+          <div class="mt-1 text-sm">Faster burnout without recovery</div>
+        </div>
+        <div class="card-surface rounded-lg p-5 shadow-soft border border-black/5 dark:border-white/10 text-center">
+          <div class="text-3xl font-extrabold">7h</div>
+          <div class="mt-1 text-sm">Target sleep minimum</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold">FAQ</h2>
+      <div class="mt-6 space-y-3">
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">Is this safe for joint pain?</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Yes. Strong40 emphasizes joint-friendly movements, controlled tempo, and progressive intensity.</div>
+        </article>
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">How much time per day?</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Most tips fit into 10–20 minutes. Consistency beats intensity.</div>
+        </article>
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">Do I need equipment?</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Optional. Bodyweight, bands, and dumbbells are enough for most tips.</div>
+        </article>
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">What about recovery?</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Recovery Wednesday and mobility rules ensure your joints and energy bounce back.</div>
+        </article>
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">Can I unsubscribe?</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Anytime with one click. SMS: reply STOP to unsubscribe, HELP for help.</div>
+        </article>
+        <article class="border border-black/5 dark:border-white/10 rounded-lg p-4">
+          <button class="w-full text-left font-medium" @click="$el.nextElementSibling.classList.toggle('hidden')">Medical disclaimer</button>
+          <div class="hidden mt-2 text-sm text-black/70 dark:text-white/70">Consult your healthcare provider before starting any fitness program, especially if you have medical conditions or concerns.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-black/5 dark:border-white/10 py-8 text-sm">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="text-[hsl(var(--brand-strong))]">
+            <path d="M7 14l3-3 3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span class="font-semibold">Strong40</span>
+        </div>
+        <div class="space-x-4 text-black/60 dark:text-white/60">
+          <a href="#lead" class="hover:underline">Subscribe</a>
+          <a href="#" class="hover:underline">Privacy</a>
+          <a href="#" class="hover:underline">Terms</a>
+        </div>
+      </div>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 text-xs text-black/60 dark:text-white/60">
+        <p>SMS compliance: Reply STOP to unsubscribe, HELP for help. Message and data rates may apply.</p>
+        <p class="mt-1">© <span x-text="new Date().getFullYear()"></span> Strong40. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-sm text-red-700">JavaScript is required for full functionality (theme, carousel, accessibility enhancements).</div>
+    </noscript>
+
+    <script>
+      function app() {
+        return {
+          theme: 'light',
+          phone: '',
+          formSubmitted: false,
+          init() {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            this.theme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+            document.documentElement.classList.toggle('dark', this.theme === 'dark');
+            const params = new URLSearchParams(window.location.search);
+            this.formSubmitted = params.get('success') === 'true';
+          },
+          toggleTheme() {
+            this.theme = this.theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.toggle('dark', this.theme === 'dark');
+            localStorage.setItem('theme', this.theme);
+          }
+        }
+      }
+
+      function tipsCarousel() {
+        return {
+          current: 0,
+          copied: false,
+          tips: [
+            { title: 'The 2-Minute Mobility Rule', body: 'Before each workout, spend 2 minutes on hips, shoulders, and ankles. Consistency reduces stiffness and improves form.' },
+            { title: 'Recovery Wednesday', body: 'Mid-week low-intensity day with walking, light band work, and breathing. Keep gains without burning out.' },
+            { title: 'The Protein Timing Hack', body: 'Have 25–35g of protein within 60 minutes after training. Support muscle repair and energy for the next day.' },
+            { title: 'Strength Over Cardio', body: 'Prioritize compound strength moves 3x/week. Add short finishers for conditioning without joint wear.' },
+            { title: 'The 7-Hour Sleep Rule', body: 'Aim for at least 7 hours. Add a 15-minute wind-down routine to improve sleep quality and recovery.' }
+          ],
+          next() { this.current = (this.current + 1) % this.tips.length; this.copied = false; },
+          prev() { this.current = (this.current - 1 + this.tips.length) % this.tips.length; this.copied = false; },
+          go(i) { this.current = i; this.copied = false; },
+          copy() {
+            const t = this.tips[this.current];
+            const text = `${t.title}: ${t.body}`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(text).then(() => { this.copied = true; });
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
+
+

@@ -1,0 +1,194 @@
+{
+    "id":  "18144a27-6a1d-424f-a64a-44cdd8c93242",
+    "site_id":  "18144a27-6a1d-424f-a64a-44cdd8c93242",
+    "plan":  "nf_team_pro",
+    "ssl_plan":  null,
+    "premium":  false,
+    "claimed":  true,
+    "name":  "strong-40",
+    "custom_domain":  null,
+    "branch_deploy_custom_domain":  null,
+    "deploy_preview_custom_domain":  null,
+    "domain_aliases":  [
+
+                       ],
+    "sso_login":  false,
+    "sso_login_context":  "all",
+    "notification_email":  null,
+    "url":  "http://strong-40.netlify.app",
+    "admin_url":  "https://app.netlify.com/projects/strong-40",
+    "deploy_id":  "689fe6891d8999150f1ef263",
+    "build_id":  "",
+    "deploy_url":  "http://689fe6891d8999150f1ef263--strong-40.netlify.app",
+    "state":  "current",
+    "screenshot_url":  "https://d33wubrfki0l68.cloudfront.net/689fe6891d8999150f1ef263/screenshot_2025-08-16-02-01-47-0000.webp",
+    "created_at":  "2025-08-16T01:49:01.143Z",
+    "updated_at":  "2025-08-16T02:03:24.357Z",
+    "user_id":  "6781323f7862a8195f9fbf47",
+    "error_message":  null,
+    "ssl":  false,
+    "ssl_url":  "https://strong-40.netlify.app",
+    "force_ssl":  null,
+    "ssl_status":  null,
+    "max_domain_aliases":  100,
+    "build_settings":  {
+
+                       },
+    "dev_server_settings":  {
+
+                            },
+    "processing_settings":  {
+                                "html":  {
+                                             "pretty_urls":  true
+                                         },
+                                "ignore_html_forms":  true
+                            },
+    "prerender":  null,
+    "prerender_headers":  null,
+    "deploy_hook":  null,
+    "published_deploy":  {
+                             "id":  "689fe6891d8999150f1ef263",
+                             "site_id":  "18144a27-6a1d-424f-a64a-44cdd8c93242",
+                             "build_id":  null,
+                             "state":  "ready",
+                             "name":  "strong-40",
+                             "url":  "http://strong-40.netlify.app",
+                             "ssl_url":  "https://strong-40.netlify.app",
+                             "admin_url":  "https://app.netlify.com/projects/strong-40",
+                             "deploy_url":  "http://689fe6891d8999150f1ef263--strong-40.netlify.app",
+                             "deploy_ssl_url":  "https://689fe6891d8999150f1ef263--strong-40.netlify.app",
+                             "created_at":  "2025-08-16T02:01:45.953Z",
+                             "updated_at":  "2025-08-16T02:03:24.298Z",
+                             "user_id":  "6781323f7862a8195f9fbf47",
+                             "error_message":  null,
+                             "required":  [
+
+                                          ],
+                             "required_functions":  [
+
+                                                    ],
+                             "commit_ref":  null,
+                             "review_id":  null,
+                             "branch":  null,
+                             "commit_url":  null,
+                             "skipped":  null,
+                             "locked":  null,
+                             "title":  null,
+                             "commit_message":  null,
+                             "review_url":  null,
+                             "published_at":  "2025-08-16T02:01:46.728Z",
+                             "context":  "production",
+                             "deploy_time":  0,
+                             "available_functions":  [
+
+                                                     ],
+                             "screenshot_url":  "https://d33wubrfki0l68.cloudfront.net/689fe6891d8999150f1ef263/screenshot_2025-08-16-02-01-47-0000.webp",
+                             "committer":  null,
+                             "skipped_log":  null,
+                             "manual_deploy":  true,
+                             "plugin_state":  "none",
+                             "lighthouse_plugin_scores":  null,
+                             "links":  {
+                                           "permalink":  "https://689fe6891d8999150f1ef263--strong-40.netlify.app",
+                                           "alias":  "https://strong-40.netlify.app",
+                                           "branch":  null
+                                       },
+                             "framework":  null,
+                             "entry_path":  null,
+                             "views_count":  null,
+                             "function_schedules":  [
+
+                                                    ],
+                             "public_repo":  null,
+                             "pending_review_reason":  null,
+                             "lighthouse":  null,
+                             "edge_functions_present":  null,
+                             "expires_at":  null,
+                             "blobs_region":  "us-east-2",
+                             "deploy_validations_report":  null
+                         },
+    "managed_dns":  true,
+    "jwt_secret":  null,
+    "jwt_roles_path":  "app_metadata.authorization.roles",
+    "account_id":  "6781323f7862a8195f9fbf49",
+    "account_slug":  "swimhack",
+    "account_name":  "Strickland Technology",
+    "account_type":  "Pro",
+    "capabilities":  {
+                         "cdn_tier":  "reg",
+                         "deploy_diagnostics":  true,
+                         "dev_server_enabled":  true
+                     },
+    "dns_zone_id":  null,
+    "identity_instance_id":  null,
+    "primary_create_project":  null,
+    "use_functions":  null,
+    "use_edge_handlers":  null,
+    "use_forms":  null,
+    "parent_user_id":  null,
+    "automatic_tls_provisioning":  null,
+    "disabled":  null,
+    "disabled_reason":  null,
+    "lifecycle_state":  "active",
+    "id_domain":  "18144a27-6a1d-424f-a64a-44cdd8c93242.netlify.app",
+    "use_lm":  null,
+    "build_image":  "noble",
+    "automatic_tls_provisioning_expired":  false,
+    "analytics_instance_id":  null,
+    "functions_region":  "us-east-2",
+    "functions_timeout":  null,
+    "plugins":  [
+
+                ],
+    "account_subdomain":  null,
+    "cdp_enabled_contexts":  [
+                                 "deploy-preview"
+                             ],
+    "deploy_retention_in_days":  90,
+    "build_timelimit":  null,
+    "password_context":  "all",
+    "hud_enabled":  false,
+    "labels":  [
+
+               ],
+    "traffic_rules_config_per_scope":  {
+
+                                       },
+    "visual_editor_active":  null,
+    "description":  null,
+    "description_hidden":  null,
+    "dev_server_resources":  null,
+    "created_via":  null,
+    "deploy_origin":  {
+
+                      },
+    "session_id":  null,
+    "quick_setup_in_progress":  true,
+    "cover_url":  null,
+    "feature_flags":  null,
+    "versions":  {
+                     "go":  {
+                                "active":  null,
+                                "default":  "1.19.x"
+                            },
+                     "node":  {
+                                  "active":  null,
+                                  "default":  "22"
+                              },
+                     "python":  {
+                                    "active":  null,
+                                    "default":  "3.13"
+                                },
+                     "ruby":  {
+                                  "active":  null,
+                                  "default":  "2.7.2"
+                              },
+                     "yarn":  {
+                                  "active":  null,
+                                  "default":  "1.22.19"
+                              }
+                 },
+    "has_password":  false,
+    "default_domain":  "strong-40.netlify.app",
+    "use_envelope":  true
+}

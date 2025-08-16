@@ -1,0 +1,26 @@
+# Node/Package managers
+node_modules/
+.pnp
+.pnp.js
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Assets cache
+assets/images/
+
+# Credentials (do not commit)
+credentials.md
+credentials.md.backup*
+
+
